@@ -1,9 +1,10 @@
 export class Movie {
-
+   
 
     constructor(
         public name: string,
-        public year: number,
+        public Year: number,
+        public Title?: string,
         public rated?: string,
         public runtime?: string,
         public genre?: string,
@@ -15,8 +16,8 @@ export class Movie {
         public country?: string,
         public awards?: string,
         public posterURL?: string,
-        public imdbRating?: number,
-        public imdbVotes?: number,
+        public imdbRating?: string,
+        public imdbVotes?: string,
         public imdbID?: string,
         public type?: string,
         public production?: string,
@@ -27,8 +28,10 @@ export class Movie {
         public metascore?: number,
         public rottenTomatoesRating?: number,
         public imdbRatingCount?: number,
-    ){
+        public released?: Date
 
+    ){
+        this.Year = Number(Year);
     }
 
     

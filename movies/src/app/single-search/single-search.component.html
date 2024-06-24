@@ -1,7 +1,24 @@
-<p>single-search works!</p>
+<!-- <p>single-search works!</p> -->
+
+<form class="custom-form" #movieForm="ngForm" (ngSubmit)="createMovie(movieForm)">
+    <div>
+        <button type="submit" class="btn btn-primary m-3 ">Prikazi film</button>
+    </div>
+
+</form>
+
 
 <div class="">
     <div class="" *ngIf="movie">
         <p>{{movie.name}}</p>
+    </div>
+</div>
+
+
+
+<div class="">
+    <div class="" *ngIf="movie2">
+        <p>{{movie2.name}}</p>
+        <app-movie-detail [movie]="movie2"></app-movie-detail>
     </div>
 </div>

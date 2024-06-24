@@ -16,7 +16,7 @@ export class MovieCompComponent implements OnInit{
   ngOnInit(): void {
     // Initializing productClasses and productStyles objects
     this.movieClasses = {
-      "highlight": this.movie.year > 2023,
+      "highlight": this.movie.Year > 2023,
     }
     // this.productStyles = {
     //   "font-size": this.product.quantity >= 10 ? "1.5rem" : "1rem"

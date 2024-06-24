@@ -10,6 +10,7 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SearchComponent } from './search/search.component';
 import { SingleSearchComponent } from './single-search/single-search.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SingleSearchComponent } from './single-search/single-search.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
