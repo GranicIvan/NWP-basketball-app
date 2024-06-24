@@ -8,6 +8,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { FeaturedMoviesComponent } from './featured-movies/featured-movies.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SearchComponent } from './search/search.component';
+import { SingleSearchComponent } from './single-search/single-search.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { AppRoutingModule } from './app-routing.module';
     MovieListComponent,
     HomePageComponent,
     FeaturedMoviesComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    SearchComponent,
+    SingleSearchComponent
   ],
   imports: [
     BrowserModule,
