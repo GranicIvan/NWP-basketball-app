@@ -1,36 +1,46 @@
-<p>movie-detail works!</p>
+<!-- <p>movie-detail works!</p> -->
 
 <div class="movie">
-    <div><img class="movie__image" [src]="movie.posterURL" alt="IMG"> </div>
-    <h3>{{movie.name}}</h3>
+    <div><img class="movie__image" [src]="movie.Poster" alt="IMG"> </div>
+    <h2>{{movie.Title}}</h2>
     <p>{{movie.Year}}</p>
 
-    <div class="" *ngIf="movie.rated">
-        <p>{{movie.rated}}</p>
+    <p>Director: {{movie.Director}}</p>
+
+
+
+    <p>Age rating: {{movie.Rated}}</p>
+    
+    
+    <p>Genre: {{movie.Genre}}</p>
+
+    <p>Runtime: {{movie.Runtime}}</p>
+    <p>Plot: {{movie.Plot}}</p>
+    <p>Key actors: {{movie.Actors}}</p>
+    <p>Awards: {{movie.Awards}}</p>
+    <p>Box office: {{movie.BoxOffice}}</p>
+    <p>{{movie.Country}}</p> <!-- TODO sta ovde API craca, gde se snimalo ili sta -->
+    <p>Language: {{movie.Language}}</p>
+
+    <!-- <p>Production: {{movie.Production}}</p>-->
+
+    <div class="" *ngIf="movie.Production !== 'N/A'">
+        <p>Production: {{movie.Production}}</p>
     </div>
 
-    <p>{{movie.rated}}</p>
-    <p>{{movie.director}}</p>
-    <p>{{movie.genre}}</p>
+    <p>Released: {{movie.Released}}</p>
+    <p>Writer: {{movie.Writer}}</p>
+    <p>imdb rating: {{movie.imdbRating}}</p>
+    <p>Imdb votes: {{movie.imdbVotes}}</p>
+    <p>Imdb id: {{movie.imdbID}}</p>
+    <p>Media type: {{movie.Type}}</p>
+    <div class="" *ngIf="movie.DVD != 'N/A'">
+        <p>DVD: {{movie.DVD}}</p>
+    </div>
+    
+    <p>Website: {{movie.Website}}</p>
+    <p>Metascore: {{movie.Metascore}}</p>
 
-    <p>{{movie.runtime}}</p>
-    <p>{{movie.plot}}</p>
-    <p>{{movie.actors}}</p>
-    <p>{{movie.awards}}</p>
-    <p>{{movie.boxOffice}}</p>
-    <p>{{movie.country}}</p>
-    <p>{{movie.language}}</p>
-    <p>{{movie.production}}</p>
-    <p>{{movie.released}}</p>
-    <p>{{movie.runtime}}</p>
-    <p>{{movie.writer}}</p>
-    <p>{{movie.imdbRating}}</p>
-    <p>{{movie.imdbVotes}}</p>
-    <p>{{movie.imdbID}}</p>
-    <p>{{movie.type}}</p>
-    <p>{{movie.dvd}}</p>
-    <p>{{movie.website}}</p>
-    <p>{{movie.response}}</p>
 
 
     

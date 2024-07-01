@@ -10,15 +10,23 @@
 
 <div class="">
     <div class="" *ngIf="movie">
-        <p>{{movie.name}}</p>
+        <p>{{movie.Title}}</p>
     </div>
 </div>
 
 
 
-<div class="">
+
+
+
+
+
+<hr>
+
+  <div class="">
     <div class="" *ngIf="movie2">
-        <p>{{movie2.name}}</p>
+        <!--<p>{{movie2.Title}}</p> -->
         <app-movie-detail [movie]="movie2"></app-movie-detail>
     </div>
 </div>
+

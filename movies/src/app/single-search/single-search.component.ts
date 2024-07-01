@@ -12,14 +12,19 @@ export class SingleSearchComponent {
   movie: Movie | null;
   message: string;
   movie2: Movie | null;
-
+  //jsonString: any | undefined;
+  //jsonString2: { Title: string; Year: string; Rated: string; Ratings: { Source: string; Value: string; }[]; };
+  jsonString3: any;
+  jsonString: { Title: string; Year: string; Rated: string; Released: string; Runtime: string; Genre: string; Director: string; Writer: string; Actors: string; Plot: string; Language: string; Country: string; Awards: string; Poster: string; Ratings: { Source: string; Value: string; }[]; Metascore: string; imdbRating: string; imdbVotes: string; imdbID: string; Type: string; DVD: string; BoxOffice: string; Production: string; Website: string; Response: string; };
+  
 
   constructor() {
 
     this.movie = null;
     this.message = 'Please enter a movie title';
 
-    this.movie2 = {
+    // this.movie2;
+    this.jsonString = {
       "Title": "Interstellar",
       "Year": "2014",
       "Rated": "PG-13",
@@ -58,25 +63,44 @@ export class SingleSearchComponent {
       "Production": "N/A",
       "Website": "N/A",
       "Response": "True"
-    }
+    };
+
+
+
+  this.jsonString3 =  JSON.parse(JSON.stringify(this.jsonString));
+  this.jsonString3.Year =  Number(this.jsonString3.Year);
+
+  this.movie2 = this.jsonString3;
+
+
+
   }
 
   createMovie(movieForm: NgForm) {
-    console.log('Creating vet ', this.movie);
+    //console.log('Creating movie ', this.movie);
     if (movieForm.valid) {
       this.message = 'Movie form is in a valid state';
       
       this.movie =  {
-        name: 'The Shawshank Redemption',
-        director: 'Frank Darabont',
+        Title: 'The Shawshank Redemption',
+        Director: 'Frank Darabont',
         Year: 1994,
-        posterURL: 'https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg'
+        Poster: 'https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg'
       };
 
     } else {
       this.message = 'Stock form is in an invalid state';
       console.error('Movie form is in an invalid state');
     }
+  }
+
+  convertNumbersInJSON(){
+    this.jsonString3 = this.jsonString;
+    this.jsonString3.Year = Number(this.jsonString.Year);
+    this.jsonString3.metascore = Number(this.jsonString.Metascore);
+    this.jsonString3.imdbRating = Number(this.jsonString.imdbRating);
+    this.jsonString3.imdbVotes = Number(this.jsonString.imdbVotes);
+    this.jsonString3.rottenTomatoesRating = Number(this.jsonString.Ratings[1].Value);
   }
 
 }
