@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Movie } from '../model/movie';
 import { NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-single-search',
@@ -8,69 +10,76 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./single-search.component.css']
 })
 export class SingleSearchComponent {
+  [x: string]: any;
 
   movie: Movie | null;
   message: string;
-  movie2: Movie | null;
+  movie2!: Movie | null;
   //jsonString: any | undefined;
   //jsonString2: { Title: string; Year: string; Rated: string; Ratings: { Source: string; Value: string; }[]; };
   jsonString3: any;
-  jsonString: { Title: string; Year: string; Rated: string; Released: string; Runtime: string; Genre: string; Director: string; Writer: string; Actors: string; Plot: string; Language: string; Country: string; Awards: string; Poster: string; Ratings: { Source: string; Value: string; }[]; Metascore: string; imdbRating: string; imdbVotes: string; imdbID: string; Type: string; DVD: string; BoxOffice: string; Production: string; Website: string; Response: string; };
+  jsonString!: { Title: string; Year: string; Rated: string; Released: string; Runtime: string; Genre: string; Director: string; Writer: string; Actors: string; Plot: string; Language: string; Country: string; Awards: string; Poster: string; Ratings: { Source: string; Value: string; }[]; Metascore: string; imdbRating: string; imdbVotes: string; imdbID: string; Type: string; DVD: string; BoxOffice: string; Production: string; Website: string; Response: string; };
+  movieTitle!: string;
+
+  //Querry variables
+  sQuerry!: string;
+  apiKey!: string;
+
   
 
-  constructor() {
+  constructor(private http: HttpClient) {
 
     this.movie = null;
     this.message = 'Please enter a movie title';
 
     // this.movie2;
-    this.jsonString = {
-      "Title": "Interstellar",
-      "Year": "2014",
-      "Rated": "PG-13",
-      "Released": "07 Nov 2014",
-      "Runtime": "169 min",
-      "Genre": "Adventure, Drama, Sci-Fi",
-      "Director": "Christopher Nolan",
-      "Writer": "Jonathan Nolan, Christopher Nolan",
-      "Actors": "Matthew McConaughey, Anne Hathaway, Jessica Chastain",
-      "Plot": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
-      "Language": "English",
-      "Country": "United States, United Kingdom, Canada",
-      "Awards": "Won 1 Oscar. 44 wins & 148 nominations total",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
-      "Ratings": [
-        {
-          "Source": "Internet Movie Database",
-          "Value": "8.7/10"
-        },
-        {
-          "Source": "Rotten Tomatoes",
-          "Value": "73%"
-        },
-        {
-          "Source": "Metacritic",
-          "Value": "74/100"
-        }
-      ],
-      "Metascore": "74",
-      "imdbRating": "8.7",
-      "imdbVotes": "2,113,545",
-      "imdbID": "tt0816692",
-      "Type": "movie",
-      "DVD": "N/A",
-      "BoxOffice": "$188,020,017",
-      "Production": "N/A",
-      "Website": "N/A",
-      "Response": "True"
-    };
+  //   this.jsonString = {
+  //     "Title": "Interstellar",
+  //     "Year": "2014",
+  //     "Rated": "PG-13",
+  //     "Released": "07 Nov 2014",
+  //     "Runtime": "169 min",
+  //     "Genre": "Adventure, Drama, Sci-Fi",
+  //     "Director": "Christopher Nolan",
+  //     "Writer": "Jonathan Nolan, Christopher Nolan",
+  //     "Actors": "Matthew McConaughey, Anne Hathaway, Jessica Chastain",
+  //     "Plot": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
+  //     "Language": "English",
+  //     "Country": "United States, United Kingdom, Canada",
+  //     "Awards": "Won 1 Oscar. 44 wins & 148 nominations total",
+  //     "Poster": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
+  //     "Ratings": [
+  //       {
+  //         "Source": "Internet Movie Database",
+  //         "Value": "8.7/10"
+  //       },
+  //       {
+  //         "Source": "Rotten Tomatoes",
+  //         "Value": "73%"
+  //       },
+  //       {
+  //         "Source": "Metacritic",
+  //         "Value": "74/100"
+  //       }
+  //     ],
+  //     "Metascore": "74",
+  //     "imdbRating": "8.7",
+  //     "imdbVotes": "2,113,545",
+  //     "imdbID": "tt0816692",
+  //     "Type": "movie",
+  //     "DVD": "N/A",
+  //     "BoxOffice": "$188,020,017",
+  //     "Production": "N/A",
+  //     "Website": "N/A",
+  //     "Response": "True"
+  //   };
 
 
 
-  this.jsonString3 =  JSON.parse(JSON.stringify(this.jsonString));
-  this.jsonString3.Year =  Number(this.jsonString3.Year);
+  // this.jsonString3 =  JSON.parse(JSON.stringify(this.jsonString));
+  // this.jsonString3.Year =  Number(this.jsonString3.Year);
 
-  this.movie2 = this.jsonString3;
+  // this.movie2 = this.jsonString3;
 
 
 
@@ -93,6 +102,55 @@ export class SingleSearchComponent {
       console.error('Movie form is in an invalid state');
     }
   }
+
+
+  searchMovie(movieForm: NgForm) {
+   
+    if (movieForm.valid) {
+      //this.message = 'Movie form is in a valid state';
+      
+      this.movieTitle = this.movieTitle.trim();
+      this.apiKey = this.apiKey.trim();
+
+      console.log('Searching for movie ', this.movieTitle, ' with API key ', this.apiKey);
+      
+      
+      const url = `http://www.omdbapi.com/?t=${this.movieTitle}&apiKey=${this.apiKey}`;
+
+     
+
+      this.http.get(url).subscribe(
+        (response: any) => {
+          // Handle the response data
+          console.log('Response:', response);
+          // Update the movie variable with the retrieved data
+          this.jsonString = response;
+
+
+          this.jsonString =  JSON.parse(JSON.stringify(this.jsonString));
+          //this.jsonString3.Year =  Number(this.jsonString3.Year);
+
+          this.convertNumbersInJSON();
+
+          this.movie2 = this.jsonString3;
+
+          
+        },
+        (error: any) => {
+          // Handle any errors
+          console.error('Error:', error);
+          this.message = 'An error occurred while searching for the movie.';
+        }
+      );
+
+     
+
+    } else {
+      this.message = 'Form is in an invalid state';
+      console.error('Movie form is in an invalid state');
+    }
+  }
+
 
   convertNumbersInJSON(){
     this.jsonString3 = this.jsonString;
