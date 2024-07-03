@@ -9,14 +9,31 @@
 <div class="d-flex  justify-content-center" >
     <div class="card pretragaS" style="width: 50rem;">
         <form class="custom-form" #movieForm="ngForm" (ngSubmit)="searchMovie(movieForm)">
-            <div>
+            
+
+            <div class="form-group">
+                <div class=" d-flex m-1 ms-2 justify-content-start">
+                    <label for="movieName" >Movie name:</label>                          
+                </div>
+                                    
                 <input class="form-control inputPolja" type="text" name="title" id="movieTitle1"
                     [(ngModel)]="movieTitle" placeholder="Enter movie title">
             </div>
-            <div>
-                <input class="form-control inputPolja" type="text" name="title" id="apikey1" [(ngModel)]="apiKey"
+
+
+
+
+
+            <div class="form-group">
+                <div class=" d-flex m-1 ms-2 justify-content-start">
+                    <label for="movieName" >API key:</label>                          
+                </div>
+                                    
+                <input class="form-control inputPolja" type="text" name="apiKey" id="apikey1" [(ngModel)]="apiKey"
                     placeholder="Enter your API key">
             </div>
+
+
             <div>
                 <button type="submit" class="btn btn-primary m-3 ">Pretraga</button>
             </div>
@@ -26,11 +43,7 @@
 
 
 
-<div class="">
-    <div class="" *ngIf="sQuerry">
-        <p>{{sQuerry}}</p>
-    </div>
-</div>
+
 
 
 

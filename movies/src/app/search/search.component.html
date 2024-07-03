@@ -1,4 +1,4 @@
-<h1>Search a movie by typing a name</h1>
+<h1>Search movies by typing a name</h1>
 
 <!-- <div class="d-flex justify-content-center card" style="width: 50rem;" >
     <div class="card-body ">
@@ -17,23 +17,35 @@
 
 
 <div class="d-flex  justify-content-center " >
-    <div class="d-flex justify-content-center card"  >
+    <div class="d-flex justify-content-center card"  style="width: 50rem;">
         <div class="card-body ">
-            <form class="custom-form" >
+            <form class="custom-form" #movieForm="ngForm" (ngSubmit)="multiSearchMovie(movieForm)">
                 <div class="form-group">
                     <div class=" d-flex m-1 ms-2 justify-content-start">
-                        <label for="movieName" >Movie name:</label>  
+                        <label for="movieName" >Movie name:</label>                          
                     </div>
-                    
-                    <input type="text" class="form-control" id="movieName" placeholder="Enter movie name">
+                                        
+                    <input class="form-control inputPolja" type="text" name="title" id="movieTitle1"
+                        [(ngModel)]="movieTitle" placeholder="Enter movie title">
                 </div>
 
                 <div class="form-group my-4">
                     <div class=" d-flex m-1 ms-2 justify-content-start">
                         <label for="movieName" >Movie year:</label>  
                     </div>
+                                        
+                    <input class="form-control inputPolja" type="number" name="year" id="year1" [(ngModel)]="year"
+                    placeholder="Enter movie year">
+                </div>
+
+
+                <div class="form-group my-4">
+                    <div class=" d-flex m-1 ms-2 justify-content-start">
+                        <label for="apiKey" >API key:</label>  
+                    </div>
                     
-                    <input type="number" class="form-control" id="movieName" placeholder="Enter movie year">
+                    <input class="form-control inputPolja" type="text" name="apiKey" id="apikey1" [(ngModel)]="apiKey"
+                    placeholder="Enter your API key">
                 </div>
 
                 <button type="submit" class="btn btn-primary m-3 ">Search</button>
@@ -42,6 +54,26 @@
     </div>
 
 </div>
+
+
+<div class="">
+    <div class="" *ngIf="movie2">
+        <!--<p>{{movie2.Title}}</p> -->
+        <app-movie-detail [movie]="movie2"></app-movie-detail>
+    </div>
+</div>
+
+
+<div class="d-flex  justify-content-center">
+    <div class="" *ngIf="filmovi">
+        <div class="" *ngFor="let film of filmovi; index as i" >
+            <!-- <p>{{film.Title}}</p> -->
+            <app-movie-detail [movie]="film"></app-movie-detail>
+        </div>
+    </div>
+</div>
+
+
 
 <!-- <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Enter username"
                     name="username" required #usernameField="ngModel" [(ngModel)]="multi-search.query" style="width: 100%;"> -->
