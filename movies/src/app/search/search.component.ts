@@ -38,6 +38,7 @@ export class SearchComponent {
       
       this.movieTitle = this.movieTitle.trim();
       this.apiKey = this.apiKey.trim();
+      localStorage.setItem('apiKey', this.apiKey);
 
       console.log('Searching for movie ', this.movieTitle, ' with API key ', this.apiKey);
       

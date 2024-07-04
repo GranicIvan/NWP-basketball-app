@@ -69,6 +69,7 @@
         <div class="" *ngFor="let film of filmovi; index as i" >
             <!-- <p>{{film.Title}}</p> -->
             <app-movie-detail [movie]="film"></app-movie-detail>
+            <!-- <a href="/movie-by-id?id={{film.imdbID}}&apiKey={{apiKey}}" >Details</a> -->
         </div>
     </div>
 </div>

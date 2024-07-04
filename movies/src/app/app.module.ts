@@ -12,6 +12,7 @@ import { SearchComponent } from './search/search.component';
 import { SingleSearchComponent } from './single-search/single-search.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MovieByIdComponent } from './movie-by-id/movie-by-id.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     FeaturedMoviesComponent,
     MovieDetailComponent,
     SearchComponent,
-    SingleSearchComponent
+    SingleSearchComponent,
+    MovieByIdComponent
   ],
   imports: [
     BrowserModule,

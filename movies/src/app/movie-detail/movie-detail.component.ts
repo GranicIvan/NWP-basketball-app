@@ -8,9 +8,9 @@ import { Movie } from '../model/movie';
 })
 export class MovieDetailComponent {
 
-  @Input() movie!: Movie; // Ovde je ! visak, skloniti ga posle
-
+  @Input() movie!: Movie; 
   movieClasses: { [key: string]: boolean; } = {};
+  apiKey!: string;
 
 
 
@@ -19,8 +19,7 @@ export class MovieDetailComponent {
     this.movieClasses = {
       "highlight": this.movie.Year > 2023,
     }
-    // this.productStyles = {
-    //   "font-size": this.product.quantity >= 10 ? "1.5rem" : "1rem"
-    // }
+
+    this.apiKey = localStorage.getItem('apiKey') || '';
   }
 }
