@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// import { Carousel } from ;
 
 @Component({
   selector: 'app-home-page',
@@ -8,3 +9,5 @@ import { Component } from '@angular/core';
 export class HomePageComponent {
 
 }
+
+
