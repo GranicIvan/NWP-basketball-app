@@ -37,19 +37,19 @@ export class MovieByIdComponent {
 
 
     });
-               //http://www.omdbapi.com/?i=tt0468569&apiKey=7aa0da4d
+               
     const url = `http://www.omdbapi.com/?i=${this.id}&apiKey=${this.apiKey}`;
 
     this.http.get(url).subscribe(
       (response: any) => {
-        // Handle the response data
+        
         console.log('Response:', response);
-        // Update the movie variable with the retrieved data
+        
         this.jsonString = response;
 
 
         this.jsonString =  JSON.parse(JSON.stringify(this.jsonString));
-        //this.jsonString3.Year =  Number(this.jsonString3.Year);
+       
 
         this.convertNumbersInJSON();
 
@@ -58,7 +58,7 @@ export class MovieByIdComponent {
         
       },
       (error: any) => {
-        // Handle any errors
+        
         console.error('Error:', error);
         this.message = 'An error occurred while searching for the movie.';
       }
@@ -68,7 +68,7 @@ export class MovieByIdComponent {
 
   convertNumbersInJSON(){
     this.jsonString3 = this.jsonString;
-    this.jsonString3.Year = Number(this.jsonString.Year);
+    //this.jsonString3.Year = Number(this.jsonString.Year);
     this.jsonString3.metascore = Number(this.jsonString.Metascore);
     this.jsonString3.imdbRating = Number(this.jsonString.imdbRating);
     this.jsonString3.imdbVotes = Number(this.jsonString.imdbVotes);

@@ -3,10 +3,16 @@
         <button type="submit" class="btn btn-primary m-3 ">Prikazi film</button>
     </div>
 </form> -->
+<!-- <div style="background-image: url('assets/Carousel/1.jpg'); height: 100vh; width: 100%; background-size: cover; "></div> -->
+
+<body background="assets/bg.jpg" bgcolor="#000000" bgproperties="fixed">
+
+<h1>Find your Favourite Movie.</h1>
 
 <div class="d-flex  justify-content-center" >
-    <div class="card pretragaS" style="width: 50rem;">
-        <form class="custom-form" #movieForm="ngForm" (ngSubmit)="searchMovie(movieForm)">
+
+    <div class="card pretragaS" style="width: 50rem;     background-size: cover;" >
+        <form class="custom-form" #movieForm="ngForm" (ngSubmit)="searchMovie(movieForm)" >
             
             <div class="form-group">
                 <div class=" d-flex m-1 ms-2 justify-content-start">
@@ -49,3 +55,5 @@
         <app-movie-detail [movie]="movie2"></app-movie-detail>
     </div>
 </div>
+
+</body>

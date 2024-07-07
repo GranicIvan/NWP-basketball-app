@@ -1,5 +1,5 @@
 .movie {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 5px;
     display: inline-block;
     padding: 15px;
@@ -21,4 +21,9 @@
 .movie-item__btn {
     padding: 5px;
     margin: 10px;
+}
+
+.moja-kartica{
+    background-color: #e8eeef;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }

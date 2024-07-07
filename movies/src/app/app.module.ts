@@ -13,6 +13,8 @@ import { SingleSearchComponent } from './single-search/single-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieByIdComponent } from './movie-by-id/movie-by-id.component';
+import { FooterComponent } from './footer/footer.component';
+import { MovieService } from './movie.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { MovieByIdComponent } from './movie-by-id/movie-by-id.component';
     MovieDetailComponent,
     SearchComponent,
     SingleSearchComponent,
-    MovieByIdComponent
+    MovieByIdComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,9 @@ import { MovieByIdComponent } from './movie-by-id/movie-by-id.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    MovieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

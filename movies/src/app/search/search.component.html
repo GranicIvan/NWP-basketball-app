@@ -1,4 +1,4 @@
-<h1>Search movies by typing a name</h1>
+
 
 <!-- <div class="d-flex justify-content-center card" style="width: 50rem;" >
     <div class="card-body ">
@@ -14,46 +14,64 @@
     </div>
 </div> -->
 
+<body background="assets/bg.jpg" bgcolor="#000000" bgproperties="fixed">
+
+    <h1 >Search Movies by Typing a Name.</h1>
 
 
-<div class="d-flex  justify-content-center " >
-    <div class="d-flex justify-content-center card"  style="width: 50rem;">
-        <div class="card-body ">
-            <form class="custom-form" #movieForm="ngForm" (ngSubmit)="multiSearchMovie(movieForm)">
-                <div class="form-group">
-                    <div class=" d-flex m-1 ms-2 justify-content-start">
-                        <label for="movieName" >Movie name:</label>                          
+    <div class="d-flex  justify-content-center " >
+        <div class="d-flex justify-content-center card pretragaS"  style="width: 50rem;">
+            <div class="card-body ">
+                <form class="custom-form" #movieForm="ngForm" (ngSubmit)="multiSearchMovie(movieForm)">
+                    <div class="form-group">
+                        <div class=" d-flex m-1 ms-2 justify-content-start">
+                            <label for="movieName" >Movie name:</label>                          
+                        </div>
+                                            
+                        <input class="form-control inputPolja" type="text" name="title" id="movieTitle1"
+                            [(ngModel)]="movieTitle" placeholder="Enter movie title">
                     </div>
-                                        
-                    <input class="form-control inputPolja" type="text" name="title" id="movieTitle1"
-                        [(ngModel)]="movieTitle" placeholder="Enter movie title">
-                </div>
-
-                <div class="form-group my-4">
-                    <div class=" d-flex m-1 ms-2 justify-content-start">
-                        <label for="movieName" >Movie year:</label>  
+    
+                    <div class="form-group my-4">
+                        <div class=" d-flex m-1 ms-2 justify-content-start">
+                            <label for="movieName" >Movie year:</label>  
+                        </div>
+                                            
+                        <input class="form-control inputPolja" type="number" name="year" id="year1" [(ngModel)]="year"
+                        placeholder="Enter movie year">
                     </div>
-                                        
-                    <input class="form-control inputPolja" type="number" name="year" id="year1" [(ngModel)]="year"
-                    placeholder="Enter movie year">
-                </div>
-
-
-                <div class="form-group my-4">
-                    <div class=" d-flex m-1 ms-2 justify-content-start">
-                        <label for="apiKey" >API key:</label>  
+    
+    
+                    <div class="form-group my-4">
+                        <div class=" d-flex m-1 ms-2 justify-content-start">
+                            <label for="apiKey" >API key:</label>  
+                        </div>
+                        
+                        <input class="form-control inputPolja" type="text" name="apiKey" id="apikey1" [(ngModel)]="apiKey"
+                        placeholder="Enter your API key">
                     </div>
-                    
-                    <input class="form-control inputPolja" type="text" name="apiKey" id="apikey1" [(ngModel)]="apiKey"
-                    placeholder="Enter your API key">
-                </div>
+    
+                    <button type="submit" class="btn btn-primary m-3 ">Pretraga</button>
+                </form>
+            </div>
+        </div>
+    
+    </div>
 
-                <button type="submit" class="btn btn-primary m-3 ">Search</button>
-            </form>
+
+    <div class="" *ngIf="filmovi">
+        <div class="row" >
+            <div class="col" *ngFor="let film of filmovi; index as i" >
+                <!-- <p>{{film.Title}}</p> -->
+                <app-movie-detail [movie]="film"></app-movie-detail>
+                <!-- <a href="/movie-by-id?id={{film.imdbID}}&apiKey={{apiKey}}" >Details</a> -->
+            </div>
         </div>
     </div>
 
-</div>
+</body>
+
+
 
 
 <!-- <div class="">
@@ -64,15 +82,15 @@
 </div> -->
 
 
-<div class="" *ngIf="filmovi">
+<!-- <div class="" *ngIf="filmovi">
     <div class="row" >
         <div class="col" *ngFor="let film of filmovi; index as i" >
-            <!-- <p>{{film.Title}}</p> -->
+             <p>{{film.Title}}</p> 
             <app-movie-detail [movie]="film"></app-movie-detail>
-            <!-- <a href="/movie-by-id?id={{film.imdbID}}&apiKey={{apiKey}}" >Details</a> -->
+            <a href="/movie-by-id?id={{film.imdbID}}&apiKey={{apiKey}}" >Details</a> 
         </div>
     </div>
-</div>
+</div> -->
 
 
 

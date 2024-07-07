@@ -9,16 +9,10 @@ import { map } from 'rxjs/operators';
 })
 export class MovieService {
 
-  private apiUrl = 'your-api-url';
+
 
   constructor(private http: HttpClient) { }
 
-
-  getMovie(): Observable<Movie> {
-    return this.http.get<any>(this.apiUrl).pipe(
-      map((data) => this.transformMovieData(data))
-    );
-  }
 
 
 
@@ -27,9 +21,17 @@ export class MovieService {
     return {
       Title: data.Title,
       Year: Number(data.Year),
-      genre: data.Genre,
-      director: data.Director,
-      // map other properties...
+      Genre: data.Genre,
+      Director: data.Director,
+      Actors: data.Actors,
+      Plot: data.Plot,
+      Poster: data.Poster,
+      imdbRating: Number(data.imdbRating),
+      imdbVotes: data.imdbVotes,
+      Runtime: data.Runtime,
+      Released: data.Released,
+      imdbID: data.imdbID
+      
     };
   }
 

@@ -1,11 +1,12 @@
 .movie {
-    border: 1px solid black;
+   
     border-radius: 5px;
     display: inline-block;
     padding: 15px;
     text-align: center;
     margin: 15px;
     max-width: 240px;
+    background-color: #eceff0;
 }
 
 .movie__image {

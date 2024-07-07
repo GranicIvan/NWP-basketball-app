@@ -15,7 +15,6 @@ export class MovieDetailComponent {
 
 
   ngOnInit(): void {
-    // Initializing productClasses and productStyles objects
     this.movieClasses = {
       "highlight": this.movie.Year > 2023,
     }

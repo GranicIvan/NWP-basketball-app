@@ -1,7 +1,9 @@
-<div class="row">
-    <div class="col" *ngFor="let movie of movies; index as i">
-        <app-movie-comp [movie]="movie">
-            <p>This is movie number {{i + 1}}</p>
-        </app-movie-comp>
+<body background="assets/bg.jpg" bgcolor="#000000" bgproperties="fixed">
+    <div class="row">
+        <div class="col" *ngFor="let movie of movies; index as i">
+            <app-movie-comp [movie]="movie">
+                <p>This is movie number {{i + 1}}</p>
+            </app-movie-comp>
+        </div>
     </div>
-</div>
+</body>
