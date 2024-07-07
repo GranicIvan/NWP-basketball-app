@@ -1,1 +1,1 @@
-# NWP-basketball-app
+Angular app that lets you search movies.
