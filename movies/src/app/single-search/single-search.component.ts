@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Movie } from '../model/movie';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -15,6 +15,7 @@ export class SingleSearchComponent {
   movie: Movie | null;
   message: string;
   movie2!: Movie | null;
+  year!: number;
   //jsonString: any | undefined;
   //jsonString2: { Title: string; Year: string; Rated: string; Ratings: { Source: string; Value: string; }[]; };
   jsonString3: any;
@@ -24,90 +25,48 @@ export class SingleSearchComponent {
   //Querry variables
   sQuerry!: string;
   apiKey!: string;
+  submitted = false;
+
+  public nameControl = new FormControl();
+  singleSearchForm!: FormGroup;
 
   
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private fb: FormBuilder) {
 
     this.movie = null;
     this.message = 'Please enter a movie title';
 
-    // this.movie2;
-  //   this.jsonString = {
-  //     "Title": "Interstellar",
-  //     "Year": "2014",
-  //     "Rated": "PG-13",
-  //     "Released": "07 Nov 2014",
-  //     "Runtime": "169 min",
-  //     "Genre": "Adventure, Drama, Sci-Fi",
-  //     "Director": "Christopher Nolan",
-  //     "Writer": "Jonathan Nolan, Christopher Nolan",
-  //     "Actors": "Matthew McConaughey, Anne Hathaway, Jessica Chastain",
-  //     "Plot": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
-  //     "Language": "English",
-  //     "Country": "United States, United Kingdom, Canada",
-  //     "Awards": "Won 1 Oscar. 44 wins & 148 nominations total",
-  //     "Poster": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
-  //     "Ratings": [
-  //       {
-  //         "Source": "Internet Movie Database",
-  //         "Value": "8.7/10"
-  //       },
-  //       {
-  //         "Source": "Rotten Tomatoes",
-  //         "Value": "73%"
-  //       },
-  //       {
-  //         "Source": "Metacritic",
-  //         "Value": "74/100"
-  //       }
-  //     ],
-  //     "Metascore": "74",
-  //     "imdbRating": "8.7",
-  //     "imdbVotes": "2,113,545",
-  //     "imdbID": "tt0816692",
-  //     "Type": "movie",
-  //     "DVD": "N/A",
-  //     "BoxOffice": "$188,020,017",
-  //     "Production": "N/A",
-  //     "Website": "N/A",
-  //     "Response": "True"
-  //   };
 
 
-
-  // this.jsonString3 =  JSON.parse(JSON.stringify(this.jsonString));
-  // this.jsonString3.Year =  Number(this.jsonString3.Year);
-
-  // this.movie2 = this.jsonString3;
 
 
 
   }
 
-  createMovie(movieForm: NgForm) {
-    //console.log('Creating movie ', this.movie);
-    if (movieForm.valid) {
-      this.message = 'Movie form is in a valid state';
+  // createMovie(movieForm: NgForm) {
+  //   //console.log('Creating movie ', this.movie);
+  //   if (movieForm.valid) {
+  //     this.message = 'Movie form is in a valid state';
       
-      this.movie =  {
-        Title: 'The Shawshank Redemption',
-        Director: 'Frank Darabont',
-        Year: 1994,
-        Poster: 'https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg'
-      };
+  //     this.movie =  {
+  //       Title: 'The Shawshank Redemption',
+  //       Director: 'Frank Darabont',
+  //       Year: 1994,
+  //       Poster: 'https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg'
+  //     };
 
-    } else {
-      this.message = 'Stock form is in an invalid state';
-      console.error('Movie form is in an invalid state');
-    }
-  }
+  //   } else {
+  //     this.message = 'Stock form is in an invalid state';
+  //     console.error('Movie form is in an invalid state');
+  //   }
+  // }
 
 
   searchMovie(movieForm: NgForm) {
    
     if (movieForm.valid) {
-      //this.message = 'Movie form is in a valid state';
+      
       
       this.movieTitle = this.movieTitle.trim();
       this.apiKey = this.apiKey.trim();
@@ -115,20 +74,20 @@ export class SingleSearchComponent {
       console.log('Searching for movie ', this.movieTitle, ' with API key ', this.apiKey);
       
       
-      const url = `http://www.omdbapi.com/?t=${this.movieTitle}&apiKey=${this.apiKey}`;
+      const url = `http://www.omdbapi.com/?t=${this.movieTitle}&y=${this.year}&apiKey=${this.apiKey}`;
 
      
 
       this.http.get(url).subscribe(
         (response: any) => {
-          // Handle the response data
+          
           console.log('Response:', response);
-          // Update the movie variable with the retrieved data
+          
           this.jsonString = response;
 
 
           this.jsonString =  JSON.parse(JSON.stringify(this.jsonString));
-          //this.jsonString3.Year =  Number(this.jsonString3.Year);
+         
 
           this.convertNumbersInJSON();
 
@@ -137,7 +96,6 @@ export class SingleSearchComponent {
           
         },
         (error: any) => {
-          // Handle any errors
           console.error('Error:', error);
           this.message = 'An error occurred while searching for the movie.';
         }
@@ -154,11 +112,50 @@ export class SingleSearchComponent {
 
   convertNumbersInJSON(){
     this.jsonString3 = this.jsonString;
-    this.jsonString3.Year = Number(this.jsonString.Year);
+    //this.jsonString3.Year = Number(this.jsonString.Year);
     this.jsonString3.metascore = Number(this.jsonString.Metascore);
     this.jsonString3.imdbRating = Number(this.jsonString.imdbRating);
     this.jsonString3.imdbVotes = Number(this.jsonString.imdbVotes);
     this.jsonString3.rottenTomatoesRating = Number(this.jsonString.Ratings[1].Value);
+  }
+
+  ///-----------------
+  public stockForm: FormGroup = new FormGroup({
+    name: new FormControl(null, Validators.required),
+    code: new FormControl(null, [Validators.required, Validators.minLength(2)]),
+    price: new FormControl(0, [Validators.required, Validators.min(0)])
+  });
+
+  onSubmit() {
+    console.log('Stock Form Value', this.stockForm.value);
+  }
+
+
+
+  ngOnInit(): void {
+    this.submitted = false;
+
+    this.movieTitle
+
+    this.singleSearchForm = this.fb.group({
+      "movieTitle": [null, Validators.required],
+      "apiKey": [null, Validators.required]
+    });
+
+  }
+
+  searchForm = new FormGroup({
+    movieTitle: new FormControl('', Validators.required),
+    apiKey: new FormControl('', Validators.required)
+  });
+
+
+  get getMovieTitle() {
+    return this.singleSearchForm.get('movieTitle');
+  }
+
+  get getApiKey() {
+    return this.singleSearchForm.get('apyKey');
   }
 
 }

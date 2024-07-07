@@ -56,17 +56,17 @@
 </div>
 
 
-<div class="">
+<!-- <div class="">
     <div class="" *ngIf="movie2">
-        <!--<p>{{movie2.Title}}</p> -->
+        <p>{{movie2.Title}}</p> 
         <app-movie-detail [movie]="movie2"></app-movie-detail>
     </div>
-</div>
+</div> -->
 
 
-<div class="d-flex  justify-content-center">
-    <div class="" *ngIf="filmovi">
-        <div class="" *ngFor="let film of filmovi; index as i" >
+<div class="" *ngIf="filmovi">
+    <div class="row" >
+        <div class="col" *ngFor="let film of filmovi; index as i" >
             <!-- <p>{{film.Title}}</p> -->
             <app-movie-detail [movie]="film"></app-movie-detail>
             <!-- <a href="/movie-by-id?id={{film.imdbID}}&apiKey={{apiKey}}" >Details</a> -->

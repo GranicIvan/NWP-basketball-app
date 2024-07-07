@@ -1,48 +1,92 @@
-<!-- <p>movie-detail works!</p> -->
-
 <div class="movie">
     <div><img class="movie__image" [src]="movie.Poster" alt="IMG"> </div>
     <h2>{{movie.Title}}</h2>
     <p>{{movie.Year}}</p>
 
-    <p>Director: {{movie.Director}}</p>
+    <div class="" *ngIf="movie.Director">
+        <p>Director: {{movie.Director}}</p>
+    </div>
 
+    <div class="" *ngIf="movie.Rated">
+        <p>Rated: {{movie.Rated}}</p>
+    </div>
 
+    <div class="" *ngIf="movie.Genre">
+        <p>Genre: {{movie.Genre}}</p>
+    </div>
 
-    <p>Age rating: {{movie.Rated}}</p>
+    <div class="" *ngIf="movie.Runtime">
+        <p>Runtime: {{movie.Runtime}}</p>
+    </div>
+
+    <div class="" *ngIf="movie.Plot">
+        <p>Plot: {{movie.Plot}}</p>
+    </div>
+
+    <div class="" *ngIf="movie.Actors">
+        <p>Key actors: {{movie.Actors}}</p>
+    </div>
+
+    <div class="" *ngIf="movie.Awards">
+        <p>Awards: {{movie.Awards}}</p>
+    </div>
+
+    <div class="" *ngIf="movie.BoxOffice">
+        <p>Box office: {{movie.BoxOffice}}</p>
+    </div>
+
+    <div class="" *ngIf="movie.Country">
+        <p>Country: {{movie.Country}}</p>
+    </div>
+
+    <div class="" *ngIf="movie.Language">
+        <p>Language: {{movie.Language}}</p>
+    </div>
     
     
-    <p>Genre: {{movie.Genre}}</p>
-
-    <p>Runtime: {{movie.Runtime}}</p>
-    <p>Plot: {{movie.Plot}}</p>
-    <p>Key actors: {{movie.Actors}}</p>
-    <p>Awards: {{movie.Awards}}</p>
-    <p>Box office: {{movie.BoxOffice}}</p>
-    <p>{{movie.Country}}</p> <!-- TODO sta ovde API craca, gde se snimalo ili sta -->
-    <p>Language: {{movie.Language}}</p>
-
-    <!-- <p>Production: {{movie.Production}}</p>-->
-
-    <div class="" *ngIf="movie.Production !== 'N/A'">
+    <div class="" *ngIf="movie.Production !== 'N/A' && movie.Production">
         <p>Production: {{movie.Production}}</p>
     </div>
 
-    <p>Released: {{movie.Released}}</p>
-    <p>Writer: {{movie.Writer}}</p>
-    <p>imdb rating: {{movie.imdbRating}}</p>
-    <p>Imdb votes: {{movie.imdbVotes}}</p>
-    <p>Imdb id: {{movie.imdbID}}</p>
-    <p>Media type: {{movie.Type}}</p>
-    <div class="" *ngIf="movie.DVD != 'N/A'">
+    <div class="" *ngIf="movie.Released">
+        <p>Released: {{movie.Released}}</p>
+    </div>
+
+    <div class="" *ngIf="movie.Writer">
+        <p>Writer: {{movie.Writer}}</p>
+    </div>
+
+    <div class="" *ngIf="movie.imdbRating">
+        <p>imdbRating: {{movie.imdbRating}}</p>
+    </div>
+
+    
+    <div class="" *ngIf="movie.imdbVotes">
+        <p>imdbVotes: {{movie.imdbVotes}}</p>
+    </div>
+
+    <div class="" *ngIf="movie.imdbID">
+        <p>imdbID: {{movie.imdbID}}</p>
+    </div>
+ 
+    <div class="" *ngIf="movie.Type">
+        <p>Type: {{movie.Type}}</p>
+    </div>
+
+    <div class="" *ngIf="movie.DVD != 'N/A' && movie.Production">
         <p>DVD: {{movie.DVD}}</p>
     </div>
-    
-    <p>Website: {{movie.Website}}</p>
-    <p>Metascore: {{movie.Metascore}}</p>
-    <a href="/movie-by-id?id={{movie.imdbID}}&apiKey={{apiKey}}" >Details</a>
+
+    <div class="" *ngIf="movie.Website">
+        <p>Website: {{movie.Website}}</p>
+    </div>
+
+    <div class="" *ngIf="movie.Metascore">
+        <p>Metascore: {{movie.Metascore}}</p>
+    </div>
 
 
+    <a href="/movie-by-id?id={{movie.imdbID}}&apiKey={{apiKey}}">Details</a>
 
-    
+
 </div>

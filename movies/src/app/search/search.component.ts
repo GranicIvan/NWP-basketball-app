@@ -32,6 +32,8 @@ export class SearchComponent {
 
 
   multiSearchMovie(movieForm: NgForm) {
+
+    this.filmovi = [];
    
     if (movieForm.valid) {
       //this.message = 'Movie form is in a valid state';
@@ -40,10 +42,10 @@ export class SearchComponent {
       this.apiKey = this.apiKey.trim();
       localStorage.setItem('apiKey', this.apiKey);
 
-      console.log('Searching for movie ', this.movieTitle, ' with API key ', this.apiKey);
+      console.log('Searching for movie ', this.movieTitle, ' with API key ', this.apiKey, ' and year ', this.year);
       
       
-      const url = `http://www.omdbapi.com/?s=${this.movieTitle}&apiKey=${this.apiKey}`;
+      const url = `http://www.omdbapi.com/?s=${this.movieTitle}&y=${this.year}&apiKey=${this.apiKey}`;
 
      
 
@@ -101,7 +103,7 @@ export class SearchComponent {
 
   convertNumbersInJSON(){
     this.jsonString3 = this.jsonString;
-    this.jsonString3.Year = Number(this.jsonString.Year);
+    //this.jsonString3.Year = Number(this.jsonString.Year);
     this.jsonString3.metascore = Number(this.jsonString.Metascore);
     this.jsonString3.imdbRating = Number(this.jsonString.imdbRating);
     this.jsonString3.imdbVotes = Number(this.jsonString.imdbVotes);
